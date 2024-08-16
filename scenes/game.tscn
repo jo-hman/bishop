@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmdeq8cmsl1pn"]
+
+[ext_resource type="PackedScene" uid="uid://btl6mfvug6uub" path="res://scenes/player.tscn" id="1_na43e"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_na43e")]
+position = Vector2(143, -75)
+scale = Vector2(0.985589, 0.916534)
+collision_layer = 3
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1.0146, -6.5464)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
