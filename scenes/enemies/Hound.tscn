@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://do37q2gk8wvvm"]
+
+[ext_resource type="Texture2D" uid="uid://c2i1lo5yb4hff" path="res://assets/hound-run-Sheet.png" id="2_4ot2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_334bg"]
+atlas = ExtResource("2_4ot2e")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ephor"]
+atlas = ExtResource("2_4ot2e")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guro2"]
+atlas = ExtResource("2_4ot2e")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vruq1"]
+atlas = ExtResource("2_4ot2e")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yapbj"]
+atlas = ExtResource("2_4ot2e")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_657ey"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_334bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ephor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guro2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vruq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yapbj")
+}],
+"loop": true,
+"name": &"running",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f42hy"]
+size = Vector2(20, 9)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_657ey")
+animation = &"running"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_f42hy")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="link_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_link_reached"]

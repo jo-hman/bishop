@@ -1,0 +1,256 @@
+[gd_scene load_steps=37 format=3 uid="uid://btl6mfvug6uub"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qk858"]
+[ext_resource type="Texture2D" uid="uid://boax0q480nawx" path="res://assets/bishop-Sheet.png" id="2_6df37"]
+[ext_resource type="Texture2D" uid="uid://cpd42dgaqddh7" path="res://assets/bishop-run-Sheet.png" id="3_5hw6d"]
+[ext_resource type="Texture2D" uid="uid://oyypjmlh2rcc" path="res://assets/lanternLight2.png" id="4_2veh2"]
+[ext_resource type="Script" path="res://scenes/player/state_machine.gd" id="5_hk3dh"]
+[ext_resource type="Script" path="res://scenes/player/states/idle.gd" id="6_ikn8p"]
+[ext_resource type="Script" path="res://scenes/player/states/fall.gd" id="7_v06uq"]
+[ext_resource type="Script" path="res://scenes/player/states/run.gd" id="8_77e62"]
+[ext_resource type="Script" path="res://scenes/player/states/jump.gd" id="9_61aqb"]
+[ext_resource type="Script" path="res://scenes/player/states/vault.gd" id="10_ks8pd"]
+[ext_resource type="Script" path="res://scenes/player/states/sprint.gd" id="11_hwq8h"]
+[ext_resource type="Script" path="res://scenes/player/states/roll.gd" id="12_233vi"]
+[ext_resource type="Script" path="res://scenes/player/states/slide.gd" id="13_tl5lk"]
+[ext_resource type="Script" path="res://scenes/player/states/grab.gd" id="14_rri8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftqtw"]
+atlas = ExtResource("2_6df37")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcvyq"]
+atlas = ExtResource("2_6df37")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pse1r"]
+atlas = ExtResource("2_6df37")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n6nc"]
+atlas = ExtResource("2_6df37")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbqfk"]
+atlas = ExtResource("2_6df37")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roimj"]
+atlas = ExtResource("2_6df37")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sco1"]
+atlas = ExtResource("2_6df37")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j3xq"]
+atlas = ExtResource("2_6df37")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n8e6"]
+atlas = ExtResource("2_6df37")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sabcg"]
+atlas = ExtResource("2_6df37")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv3t0"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p6ch"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah1n1"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naskh"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4oxd"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mns3f"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl13g"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7dvu"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo5bv"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nv8p"]
+atlas = ExtResource("3_5hw6d")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfxwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftqtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcvyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pse1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n6nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbqfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roimj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sco1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j3xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n8e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sabcg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv3t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p6ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah1n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naskh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4oxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mns3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl13g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7dvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo5bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nv8p")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7f2s"]
+size = Vector2(5, 20)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_qk858")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -13)
+sprite_frames = SubResource("SpriteFrames_jfxwf")
+animation = &"idle"
+frame = 1
+frame_progress = 0.612425
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_t7f2s")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -11)
+energy = 0.5
+texture = ExtResource("4_2veh2")
+texture_scale = 0.3
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_hk3dh")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "run", "jump")]
+script = ExtResource("6_ikn8p")
+fall = NodePath("../fall")
+run = NodePath("../run")
+jump = NodePath("../jump")
+
+[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "roll")]
+script = ExtResource("7_v06uq")
+idle = NodePath("../idle")
+run = NodePath("../run")
+vault = NodePath("../vault")
+roll = NodePath("../roll")
+
+[node name="run" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprint", "idle", "jump", "vault", "fall")]
+script = ExtResource("8_77e62")
+sprint = NodePath("../sprint")
+idle = NodePath("../idle")
+jump = NodePath("../jump")
+vault = NodePath("../vault")
+fall = NodePath("../fall")
+
+[node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "grab")]
+script = ExtResource("9_61aqb")
+idle = NodePath("../idle")
+run = NodePath("../run")
+vault = NodePath("../vault")
+grab = NodePath("../grab")
+
+[node name="vault" type="Node" parent="StateMachine" node_paths=PackedStringArray("run", "idle", "jump")]
+script = ExtResource("10_ks8pd")
+run = NodePath("../run")
+idle = NodePath("../idle")
+jump = NodePath("../jump")
+
+[node name="sprint" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "fall", "jump", "vault")]
+script = ExtResource("11_hwq8h")
+idle = NodePath("../idle")
+run = NodePath("../run")
+fall = NodePath("../fall")
+jump = NodePath("../jump")
+vault = NodePath("../vault")
+
+[node name="roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "idle", "run", "jump", "vault")]
+script = ExtResource("12_233vi")
+fall = NodePath("../fall")
+idle = NodePath("../idle")
+run = NodePath("../run")
+jump = NodePath("../jump")
+vault = NodePath("../vault")
+
+[node name="slide" type="Node" parent="StateMachine"]
+script = ExtResource("13_tl5lk")
+
+[node name="grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "jump", "vault")]
+script = ExtResource("14_rri8h")
+fall = NodePath("../fall")
+jump = NodePath("../jump")
+vault = NodePath("../vault")
