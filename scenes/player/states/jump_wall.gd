@@ -9,7 +9,7 @@ var vault: State
 @export
 var grab: State
 @export 
-var fall: State
+var fall: InAirState
 @export 
 var grab_fall: State
 
@@ -20,8 +20,11 @@ func _ready() -> void:
 	fall.disallow_buffered_jump()
 
 func enter() -> void:
-	print('jump')
 	super()
+	var wall_normal = parent.get_wall_normal()
+	if wall_normal:
+		print(wall_normal)
+		parent.velocity.x = wall_normal.x * move_speed
 	parent.velocity.y = -jump_force
 
 func process_physics(delta: float) -> State:
@@ -35,6 +38,7 @@ func process_physics(delta: float) -> State:
 	handle_horizontal_velocity(movement, delta)
 	
 	parent.move_and_slide()
+	
 	
 	if parent.is_on_floor():
 		if movement != 0:

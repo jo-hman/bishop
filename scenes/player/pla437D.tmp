@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://btl6mfvug6uub"]
+[gd_scene load_steps=37 format=3 uid="uid://btl6mfvug6uub"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qk858"]
 [ext_resource type="Texture2D" uid="uid://boax0q480nawx" path="res://assets/bishop-Sheet.png" id="2_6df37"]
@@ -9,13 +9,11 @@
 [ext_resource type="Script" path="res://scenes/player/states/fall.gd" id="7_v06uq"]
 [ext_resource type="Script" path="res://scenes/player/states/run.gd" id="8_77e62"]
 [ext_resource type="Script" path="res://scenes/player/states/jump.gd" id="9_61aqb"]
-[ext_resource type="Script" path="res://scenes/player/states/jump_wall.gd" id="10_cv0x5"]
 [ext_resource type="Script" path="res://scenes/player/states/vault.gd" id="10_ks8pd"]
 [ext_resource type="Script" path="res://scenes/player/states/sprint.gd" id="11_hwq8h"]
 [ext_resource type="Script" path="res://scenes/player/states/roll.gd" id="12_233vi"]
 [ext_resource type="Script" path="res://scenes/player/states/slide.gd" id="13_tl5lk"]
 [ext_resource type="Script" path="res://scenes/player/states/grab.gd" id="14_rri8h"]
-[ext_resource type="Script" path="res://scenes/player/states/grab_fall.gd" id="15_bpoav"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftqtw"]
 atlas = ExtResource("2_6df37")
@@ -175,7 +173,6 @@ size = Vector2(5, 20)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
-floor_snap_length = 3.5
 script = ExtResource("1_qk858")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -206,25 +203,12 @@ run = NodePath("../run")
 jump = NodePath("../jump")
 animation_name = "idle"
 
-[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "roll", "jump", "grab", "grab_fall")]
+[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "roll")]
 script = ExtResource("7_v06uq")
 idle = NodePath("../idle")
 run = NodePath("../run")
 vault = NodePath("../vault")
 roll = NodePath("../roll")
-jump = NodePath("../jump")
-grab = NodePath("../grab")
-grab_fall = NodePath("../grab_fall")
-
-[node name="fall_no_buffered_jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "roll", "jump", "grab", "grab_fall")]
-script = ExtResource("7_v06uq")
-idle = NodePath("../idle")
-run = NodePath("../run")
-vault = NodePath("../vault")
-roll = NodePath("../roll")
-jump = NodePath("../jump")
-grab = NodePath("../grab")
-grab_fall = NodePath("../grab_fall")
 
 [node name="run" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprint", "idle", "jump", "vault", "fall")]
 script = ExtResource("8_77e62")
@@ -235,23 +219,14 @@ vault = NodePath("../vault")
 fall = NodePath("../fall")
 animation_name = "run"
 
-[node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "grab", "fall", "grab_fall")]
+[node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "grab")]
 script = ExtResource("9_61aqb")
 idle = NodePath("../idle")
 run = NodePath("../run")
 vault = NodePath("../vault")
 grab = NodePath("../grab")
-fall = NodePath("../fall_no_buffered_jump")
-grab_fall = NodePath("../grab_fall")
-
-[node name="jump_wall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "grab", "fall", "grab_fall")]
-script = ExtResource("10_cv0x5")
-idle = NodePath("../idle")
-run = NodePath("../run")
-vault = NodePath("../vault")
-grab = NodePath("../grab")
-fall = NodePath("../fall_no_buffered_jump")
-grab_fall = NodePath("../grab_fall")
+animation_name = null
+move_speed = null
 
 [node name="vault" type="Node" parent="StateMachine" node_paths=PackedStringArray("run", "idle", "jump")]
 script = ExtResource("10_ks8pd")
@@ -278,17 +253,8 @@ vault = NodePath("../vault")
 [node name="slide" type="Node" parent="StateMachine"]
 script = ExtResource("13_tl5lk")
 
-[node name="grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "jump_wall", "vault", "grab_fall")]
+[node name="grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "jump", "vault")]
 script = ExtResource("14_rri8h")
 fall = NodePath("../fall")
-jump_wall = NodePath("../jump_wall")
+jump = NodePath("../jump")
 vault = NodePath("../vault")
-grab_fall = NodePath("../grab_fall")
-
-[node name="grab_fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "wall_jump", "run", "idle", "grab")]
-script = ExtResource("15_bpoav")
-fall = NodePath("../fall")
-wall_jump = NodePath("../jump_wall")
-run = NodePath("../run")
-idle = NodePath("../idle")
-grab = NodePath("../grab")

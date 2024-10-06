@@ -6,6 +6,9 @@ var animations = $AnimatedSprite2D
 @onready
 var state_machine = $StateMachine
 
+
+var jump_buffer: float = 0
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
@@ -19,4 +22,3 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
-#	TODO dodaj handlowanie latarni
