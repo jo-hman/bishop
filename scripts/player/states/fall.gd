@@ -27,9 +27,9 @@ func exit() -> void:
 	time_since_falling = 0
 	time_to_grounded = 0
 	
-func enter() -> void:
-	print('fall')
-	super()
+func enter(delta_accumulated: float) -> void:
+	#print('fall')
+	super(delta_accumulated)
 
 func process_physics(delta: float) -> State:
 	
@@ -39,7 +39,6 @@ func process_physics(delta: float) -> State:
 	
 	parent.velocity.y += gravity * delta
 	parent.velocity.y = clamp(parent.velocity.y, 0, max_falling_speed)
-#	TODO dodaj max predkosc spadania i zwieksz gravity zeby bylo mnie floaty
 	
 	var movement = Input.get_axis('left', 'right') * move_speed
 

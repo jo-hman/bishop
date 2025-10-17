@@ -7,12 +7,14 @@ var animation_name: String
 var move_speed: float = 200
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+var delta_accumulated: float
 
 ## Hold a reference to the parent so that it can be controlled by the state
 var parent: Player
 
-func enter() -> void:
+func enter(delta_accumulated: float) -> void:
 	parent.animations.play(animation_name)
+	self.delta_accumulated = delta_accumulated
 
 func exit() -> void:
 	pass

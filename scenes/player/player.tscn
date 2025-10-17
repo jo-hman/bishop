@@ -1,21 +1,21 @@
 [gd_scene load_steps=39 format=3 uid="uid://btl6mfvug6uub"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_qk858"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qk858"]
 [ext_resource type="Texture2D" uid="uid://boax0q480nawx" path="res://assets/bishop-Sheet.png" id="2_6df37"]
 [ext_resource type="Texture2D" uid="uid://cpd42dgaqddh7" path="res://assets/bishop-run-Sheet.png" id="3_5hw6d"]
 [ext_resource type="Texture2D" uid="uid://oyypjmlh2rcc" path="res://assets/lanternLight2.png" id="4_2veh2"]
-[ext_resource type="Script" path="res://scenes/player/state_machine.gd" id="5_hk3dh"]
-[ext_resource type="Script" path="res://scenes/player/states/idle.gd" id="6_ikn8p"]
-[ext_resource type="Script" path="res://scenes/player/states/fall.gd" id="7_v06uq"]
-[ext_resource type="Script" path="res://scenes/player/states/run.gd" id="8_77e62"]
-[ext_resource type="Script" path="res://scenes/player/states/jump.gd" id="9_61aqb"]
-[ext_resource type="Script" path="res://scenes/player/states/jump_wall.gd" id="10_cv0x5"]
-[ext_resource type="Script" path="res://scenes/player/states/vault.gd" id="10_ks8pd"]
-[ext_resource type="Script" path="res://scenes/player/states/sprint.gd" id="11_hwq8h"]
-[ext_resource type="Script" path="res://scenes/player/states/roll.gd" id="12_233vi"]
-[ext_resource type="Script" path="res://scenes/player/states/slide.gd" id="13_tl5lk"]
-[ext_resource type="Script" path="res://scenes/player/states/grab.gd" id="14_rri8h"]
-[ext_resource type="Script" path="res://scenes/player/states/grab_fall.gd" id="15_bpoav"]
+[ext_resource type="Script" path="res://scripts/player/state_machine.gd" id="5_hk3dh"]
+[ext_resource type="Script" path="res://scripts/player/states/idle.gd" id="6_ikn8p"]
+[ext_resource type="Script" path="res://scripts/player/states/fall.gd" id="7_v06uq"]
+[ext_resource type="Script" path="res://scripts/player/states/run.gd" id="8_77e62"]
+[ext_resource type="Script" path="res://scripts/player/states/jump.gd" id="9_61aqb"]
+[ext_resource type="Script" path="res://scripts/player/states/jump_wall.gd" id="10_cv0x5"]
+[ext_resource type="Script" path="res://scripts/player/states/vault.gd" id="10_ks8pd"]
+[ext_resource type="Script" path="res://scripts/player/states/sprint.gd" id="11_hwq8h"]
+[ext_resource type="Script" path="res://scripts/player/states/roll.gd" id="12_233vi"]
+[ext_resource type="Script" path="res://scripts/player/states/slide.gd" id="13_tl5lk"]
+[ext_resource type="Script" path="res://scripts/player/states/grab.gd" id="14_rri8h"]
+[ext_resource type="Script" path="res://scripts/player/states/grab_fall.gd" id="15_bpoav"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftqtw"]
 atlas = ExtResource("2_6df37")
@@ -193,17 +193,30 @@ shape = SubResource("RectangleShape2D_t7f2s")
 position = Vector2(0, -11)
 energy = 0.5
 texture = ExtResource("4_2veh2")
-texture_scale = 0.3
+texture_scale = 0.5
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(139, 12)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(138, -3)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(139, 4)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_hk3dh")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "run", "jump")]
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "run", "jump", "sprint")]
 script = ExtResource("6_ikn8p")
 fall = NodePath("../fall")
 run = NodePath("../run")
 jump = NodePath("../jump")
+sprint = NodePath("../sprint")
 animation_name = "idle"
 
 [node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "run", "vault", "roll", "jump", "grab", "grab_fall")]

@@ -22,9 +22,9 @@ var time_to_grab = 1
 var time_since_entered: float = 0
 var grab_disallow = false
 
-func enter() -> void:
-	super()
-	print('grab fall')
+func enter(delta_accumulated: float) -> void:
+	super(delta_accumulated);
+	#print('grab fall')
 
 func process_physics(delta: float) -> State:
 	time_since_entered += delta
