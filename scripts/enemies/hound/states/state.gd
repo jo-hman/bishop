@@ -34,9 +34,9 @@ func on_link_reached(details: Dictionary) -> EnemyState:
 	return null
 	
 func is_hit_with_rays() -> bool:
-	for ray in [target.light_cast1, target.light_cast2, target.light_cast3]:
+	for ray in target.light_casts:
 		if ray.is_colliding():
 			var collider = ray.get_collider()
-			if collider is Enemy:
+			if collider == parent:
 				return true
 	return false

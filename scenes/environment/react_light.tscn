@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtej8y5cj6mns"]
+
+[ext_resource type="Script" uid="uid://76ktf2t4vcav" path="res://scripts/react_light.gd" id="1_bpp72"]
+
+[sub_resource type="Gradient" id="Gradient_dtsuw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_svbjb"]
+gradient = SubResource("Gradient_dtsuw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8f0e"]
+size = Vector2(14, 14)
+
+[node name="ReactLight" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_bpp72")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.6724202, 0.600298, 0.1995328, 1)
+range_z_min = -4096
+range_z_max = 4096
+range_layer_max = 1
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.3
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_svbjb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b8f0e")

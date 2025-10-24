@@ -17,9 +17,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	
-	# Check each ray from the player
-	
-
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 

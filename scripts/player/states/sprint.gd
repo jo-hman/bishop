@@ -15,7 +15,7 @@ var vault: State
 var sprint_boost = 200
 
 func enter(delta_accumulated: float) -> void:
-	#print('sprint')
+	print('sprint')
 	super(delta_accumulated)
 	var movement = Input.get_axis('left', 'right') * move_speed
 	if movement > 0:

@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://do37q2gk8wvvm"]
+[gd_scene load_steps=16 format=3 uid="uid://do37q2gk8wvvm"]
 
-[ext_resource type="Script" path="res://scripts/enemies/hound/hound.gd" id="1_2psfw"]
+[ext_resource type="Script" uid="uid://cyx2021l4fvt8" path="res://scripts/enemies/hound/hound.gd" id="1_2psfw"]
 [ext_resource type="Texture2D" uid="uid://c2i1lo5yb4hff" path="res://assets/hound-run-Sheet.png" id="2_4ot2e"]
-[ext_resource type="Script" path="res://scripts/enemies/hound/state_machine.gd" id="3_wjleb"]
-[ext_resource type="Script" path="res://scripts/enemies/hound/states/idle.gd" id="4_234vr"]
-[ext_resource type="Script" path="res://scripts/enemies/hound/states/chase.gd" id="5_k1nlc"]
-[ext_resource type="Script" path="res://scripts/enemies/hound/states/lit.gd" id="6_j5brc"]
-[ext_resource type="Script" path="res://scripts/enemies/hound/states/stunned.gd" id="7_n23lg"]
+[ext_resource type="Script" uid="uid://hsw1vigf14au" path="res://scripts/enemies/hound/state_machine.gd" id="3_wjleb"]
+[ext_resource type="Script" uid="uid://cobdyl1w2ivd8" path="res://scripts/enemies/hound/states/idle.gd" id="4_234vr"]
+[ext_resource type="Script" uid="uid://b8jtg0xt6cwma" path="res://scripts/enemies/hound/states/chase.gd" id="5_k1nlc"]
+[ext_resource type="Script" uid="uid://b8e8ilp5n21b8" path="res://scripts/enemies/hound/states/lit.gd" id="6_j5brc"]
+[ext_resource type="Script" uid="uid://c4diiwtkfeu1c" path="res://scripts/enemies/hound/states/stunned.gd" id="7_n23lg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6i8tr"]
 atlas = ExtResource("2_4ot2e")
@@ -54,6 +54,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f42hy"]
 size = Vector2(20, 9)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cfntm"]
+polygon = PackedVector2Array(9, -4.5, 6, 1, -1, 1.5, -8, 5, -10, 2, -9, 1)
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_2psfw")
 
@@ -89,5 +92,9 @@ chase_state = NodePath("../chase")
 [node name="stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("chase_state")]
 script = ExtResource("7_n23lg")
 chase_state = NodePath("../chase")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(1, -9)
+occluder = SubResource("OccluderPolygon2D_cfntm")
 
 [connection signal="link_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_link_reached"]

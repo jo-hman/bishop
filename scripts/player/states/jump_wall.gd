@@ -45,8 +45,8 @@ func process_physics(delta: float) -> State:
 			return run
 		return idle
 		
-	if Input.is_action_just_pressed("grab"):
-		if parent.is_on_wall() or parent.is_on_ceiling():
-			return grab
+	#if Input.is_action_just_pressed("grab"):
+		#if parent.is_on_wall() or parent.is_on_ceiling():
+			#return grab
 	
 	return null

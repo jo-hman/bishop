@@ -13,9 +13,9 @@ var idle: State
 var grab: State
 
 @export
-var grab_friction = 0.2
+var grab_friction = 0.01
 @export
-var max_grab_fall_speed = 100
+var max_grab_fall_speed = 30
 @export
 var time_to_grab = 1
 
@@ -24,15 +24,16 @@ var grab_disallow = false
 
 func enter(delta_accumulated: float) -> void:
 	super(delta_accumulated);
+	parent.velocity.y = 0
 	#print('grab fall')
 
 func process_physics(delta: float) -> State:
 	time_since_entered += delta
 	
-	if Input.is_action_pressed('grab'):
-		if parent.is_on_wall() or parent.is_on_ceiling():
-			if time_since_entered > time_to_grab:
-				return grab
+	#if Input.is_action_pressed('grab'):
+		#if parent.is_on_wall() or parent.is_on_ceiling():
+			#if time_since_entered > time_to_grab:
+				#return grab
 	
 	parent.velocity.y += gravity * delta * grab_friction
 	parent.velocity.y = clamp(parent.velocity.y, 0, max_grab_fall_speed)
@@ -53,9 +54,9 @@ func process_physics(delta: float) -> State:
 	else:
 		return fall
 		
-	if Input.is_action_just_pressed("grab") and not grab_disallow:
-		if parent.is_on_wall() or parent.is_on_ceiling():
-			return grab
+	#if Input.is_action_just_pressed("grab") and not grab_disallow:
+		#if parent.is_on_wall() or parent.is_on_ceiling():
+			#return grab
 	
 	if parent.is_on_floor():
 		if movement != 0:
@@ -66,7 +67,7 @@ func process_physics(delta: float) -> State:
 
 func exit() -> void:
 	time_since_entered = 0
-	grab_disallow = false
+	#grab_disallow = false
 	
-func disallow_grab():
-	grab_disallow = true
+#func disallow_grab():
+	#grab_disallow = true
