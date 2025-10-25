@@ -5,11 +5,12 @@ extends CharacterBody2D
 @onready var state_machine = $StateMachine
 
 @onready var light: PointLight2D = $PointLight2D
-@onready var light_cast1: RayCast2D = $RayCast2D
-@onready var light_cast2: RayCast2D = $RayCast2D2
-@onready var light_cast3: RayCast2D = $RayCast2D3
-@onready var light_cast4: RayCast2D = $RayCast2D4
-@onready var light_cast5: RayCast2D = $RayCast2D5
+@onready var light_cast1: RayCast2D = $PointLight2D/RayCast2D
+@onready var light_cast2: RayCast2D = $PointLight2D/RayCast2D2
+@onready var light_cast3: RayCast2D = $PointLight2D/RayCast2D3
+@onready var light_cast4: RayCast2D = $PointLight2D/RayCast2D4
+@onready var light_cast5: RayCast2D = $PointLight2D/RayCast2D5
+
 
 @onready var light_casts: Array[RayCast2D] = [
 	light_cast1,
@@ -135,3 +136,18 @@ func _draw_ray(ray: RayCast2D, color: Color) -> void:
 	if ray.is_colliding():
 		var hit_local = to_local(ray.get_collision_point())
 		draw_circle(hit_local, 4.0, Color(1,1,0))
+
+
+func _on_interactable_areas_some_area_entered(area: Area2D, body: Node2D) -> void:
+	print("dupa  aa")
+	#TODO emit signal when action was made, stworz event handler ktory bedzie kumulowal wydarzenia i zarzadzal tym co ma sie dziac
+	#, zamiast Area2D w tych eventach stwórz 
+#	scene ktora bedzie mogla decydowac o tym jaka akcja ma sie zadziac (zeby event handler i player wiedzial co to za akcja)
+
+	pass # Replace with function body.
+
+
+func _on_interactable_areas_some_area_exited(area: Area2D, body: Node2D) -> void:
+	print("chuj")
+	
+	pass # Replace with function body.

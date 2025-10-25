@@ -210,6 +210,37 @@ shadow_enabled = true
 texture = ExtResource("5_kvlxm")
 texture_scale = 0.05
 
+[node name="RayCast2D" type="RayCast2D" parent="PointLight2D"]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.07692308, 0.125)
+target_position = Vector2(304, 25)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="PointLight2D"]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.07692308, 0.125)
+target_position = Vector2(302, -26)
+collision_mask = 3
+
+[node name="RayCast2D3" type="RayCast2D" parent="PointLight2D"]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.07692308, 0.125)
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D4" type="RayCast2D" parent="PointLight2D"]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.07692308, 0.125)
+target_position = Vector2(298, -13)
+collision_mask = 3
+
+[node name="RayCast2D5" type="RayCast2D" parent="PointLight2D"]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.07692308, 0.125)
+target_position = Vector2(299, 12)
+collision_mask = 3
+
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(0, -11.999998)
 scale = Vector2(10, 8)
@@ -219,32 +250,6 @@ range_layer_max = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_uf5tr")
 texture_scale = 0.05
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(304, 25)
-collision_mask = 3
-collide_with_areas = true
-
-[node name="RayCast2D2" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(302, -26)
-collision_mask = 3
-
-[node name="RayCast2D3" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(300, 0)
-collision_mask = 3
-
-[node name="RayCast2D4" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(298, -13)
-collision_mask = 3
-
-[node name="RayCast2D5" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(299, 12)
-collision_mask = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("5_hk3dh")

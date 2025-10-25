@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtej8y5cj6mns"]
 
-[ext_resource type="Script" uid="uid://76ktf2t4vcav" path="res://scripts/react_light.gd" id="1_bpp72"]
+[ext_resource type="Script" uid="uid://76ktf2t4vcav" path="res://scripts/env/react_light.gd" id="1_bpp72"]
 
 [sub_resource type="Gradient" id="Gradient_dtsuw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
