@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://drf30bencgd8n"]
+
+[ext_resource type="Script" uid="uid://yvq0ruaq12uy" path="res://scripts/env/the_house_canvas.gd" id="1_pbv3j"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yqgxr"]
+
+[node name="TheHouseCanvas" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_pbv3j")
+
+[node name="env" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="env"]
+position = Vector2(319.75, 179.74998)
+scale = Vector2(640.5, 360.49997)
+texture = SubResource("PlaceholderTexture2D_yqgxr")

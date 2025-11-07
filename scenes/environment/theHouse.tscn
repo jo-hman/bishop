@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn8wpgf4by2lo"]
+
+[ext_resource type="Script" uid="uid://7flrlpadh8go" path="res://scripts/env/theHouse.gd" id="1_yrkfi"]
+[ext_resource type="PackedScene" uid="uid://drf30bencgd8n" path="res://scenes/environment/the_house_canvas.tscn" id="2_rhalc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhalc"]
+size = Vector2(100, 100)
+
+[node name="TheHouse" type="Area2D"]
+script = ExtResource("1_yrkfi")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+position = Vector2(51.500015, -44.000004)
+scale = Vector2(0.9899997, 0.8199999)
+texture = SubResource("PlaceholderTexture2D_rhalc")
+
+[node name="TheHouseCanvas" parent="." instance=ExtResource("2_rhalc")]

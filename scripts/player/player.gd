@@ -3,15 +3,12 @@ extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
 @onready var state_machine = $StateMachine
-
 @onready var light: PointLight2D = $PointLight2D
 @onready var light_cast1: RayCast2D = $PointLight2D/RayCast2D
 @onready var light_cast2: RayCast2D = $PointLight2D/RayCast2D2
 @onready var light_cast3: RayCast2D = $PointLight2D/RayCast2D3
 @onready var light_cast4: RayCast2D = $PointLight2D/RayCast2D4
 @onready var light_cast5: RayCast2D = $PointLight2D/RayCast2D5
-
-
 @onready var light_casts: Array[RayCast2D] = [
 	light_cast1,
 	light_cast2,
@@ -22,19 +19,33 @@ extends CharacterBody2D
 
 @export var react_lights: Array[ReactLight]
 
+var current_area: InteractableArea
+var movementDisable: bool
+
 func _ready() -> void:
 	state_machine.init(self)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if movementDisable:
+		return
+	
+	if event.is_action_pressed("interact"):
+		if current_area != null:
+			current_area.interact()
+	
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
+	if movementDisable: 
+		return
 	state_machine.process_physics(delta)
 	queue_redraw()
 	update_light_rotation(light, delta)
 	check_light_hits()
 
 func _process(delta: float) -> void:
+	if movementDisable: 
+		return
 	state_machine.process_frame(delta)
 
 
@@ -93,12 +104,25 @@ func check_light_hits() -> void:
 
 	hit_lights = current_hits
 
+func _on_interactable_areas_some_area_entered(area: InteractableArea, body: Node2D) -> void:
+	if area is InteractableArea:
+		if area is TheHouse:
+			current_area = area
+		
+	#TODO emit signal when action was made, stworz event handler ktory bedzie kumulowal wydarzenia i zarzadzal tym co ma sie dziac
+	#, zamiast Area2D w tych eventach stwórz 
+#	scene ktora bedzie mogla decydowac o tym jaka akcja ma sie zadziac (zeby event handler i player wiedzial co to za akcja)
 
+func _on_interactable_areas_some_area_exited(area: InteractableArea, body: Node2D) -> void:
+	if area is InteractableArea:
+		if area is TheHouse:
+			current_area = null
 
+func disableMovement() -> void:
+	movementDisable = true
 
-
-
-
+func enableMovement() -> void:
+	movementDisable = false
 
 
 
@@ -136,18 +160,3 @@ func _draw_ray(ray: RayCast2D, color: Color) -> void:
 	if ray.is_colliding():
 		var hit_local = to_local(ray.get_collision_point())
 		draw_circle(hit_local, 4.0, Color(1,1,0))
-
-
-func _on_interactable_areas_some_area_entered(area: Area2D, body: Node2D) -> void:
-	print("dupa  aa")
-	#TODO emit signal when action was made, stworz event handler ktory bedzie kumulowal wydarzenia i zarzadzal tym co ma sie dziac
-	#, zamiast Area2D w tych eventach stwórz 
-#	scene ktora bedzie mogla decydowac o tym jaka akcja ma sie zadziac (zeby event handler i player wiedzial co to za akcja)
-
-	pass # Replace with function body.
-
-
-func _on_interactable_areas_some_area_exited(area: Area2D, body: Node2D) -> void:
-	print("chuj")
-	
-	pass # Replace with function body.
