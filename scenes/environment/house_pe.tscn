@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8aj6demkhqbq"]
+
+[ext_resource type="Script" uid="uid://boej21d27jjsl" path="res://scripts/env/house_pe.gd" id="1_p3gpe"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5hrkc"]
+
+[node name="HousePE" type="Node2D"]
+script = ExtResource("1_p3gpe")
+
+[node name="env" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="env"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="env/Area2D"]
+polygon = PackedVector2Array(378, 63, 380, 290, 576, 294, 577, 65)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(152.25002, 179.74998)
+scale = Vector2(305.5, 360.49997)
+texture = SubResource("PlaceholderTexture2D_5hrkc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(479, 180.00002)
+scale = Vector2(198.74998, 230.25)
+texture = SubResource("PlaceholderTexture2D_5hrkc")
+
+[connection signal="input_event" from="env/Area2D" to="." method="_on_area_2d_input_event"]

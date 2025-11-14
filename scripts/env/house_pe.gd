@@ -1,11 +1,12 @@
 # TheHouseCanvas.gd
-class_name TheHouseCanvas
-extends CanvasLayer
+class_name HousePE
+extends Node2D
 
-@onready var sprite_2d: Sprite2D = $env/Sprite2D3
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var sprite_2d: Sprite2D = $CanvasLayer/Sprite2D
 
 func fade_in() -> void:
-	show()
+	canvas_layer.show()
 	sprite_2d.modulate.a = 0.0
 	var tween = create_tween()
 	tween.tween_property(sprite_2d, "modulate:a", 1.0, 0.5)
@@ -20,6 +21,7 @@ func fade_out(on_finished: Callable = Callable()) -> void:
 	)
 
 
-func _on_texture_rect_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
-		print('dupa')
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print('aaaaa')
+	if event is InputEventMouseButton and event.pressed:
+		print('Clicked')

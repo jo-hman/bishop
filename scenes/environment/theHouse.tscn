@@ -17,3 +17,4 @@ scale = Vector2(0.9899997, 0.8199999)
 texture = SubResource("PlaceholderTexture2D_rhalc")
 
 [node name="TheHouseCanvas" parent="." instance=ExtResource("2_rhalc")]
+visible = false

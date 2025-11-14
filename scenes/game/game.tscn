@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmdeq8cmsl1pn"]
 
-[ext_resource type="PackedScene" uid="uid://62va24sgwxba" path="res://scenes/levels/lvl1.tscn" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://c6lq8sf1w8a7v" path="res://scenes/levels/LVL11.tscn" id="1_sul5r"]
 
 [node name="Game" type="Node2D"]
 
@@ -8,4 +8,4 @@
 
 [node name="WORD" type="Node2D" parent="."]
 
-[node name="CanvasLayer" parent="WORD" instance=ExtResource("1_sul5r")]
+[node name="lvl1" parent="WORD" instance=ExtResource("1_sul5r")]

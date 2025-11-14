@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://drf30bencgd8n"]
+[gd_scene load_steps=4 format=3 uid="uid://drf30bencgd8n"]
 
 [ext_resource type="Script" uid="uid://yvq0ruaq12uy" path="res://scripts/env/the_house_canvas.gd" id="1_pbv3j"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yqgxr"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pbv3j"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3cuvs"]
 
 [node name="TheHouseCanvas" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_pbv3j")
 
 [node name="env" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="env"]
-position = Vector2(319.75, 179.74998)
-scale = Vector2(640.5, 360.49997)
-texture = SubResource("PlaceholderTexture2D_yqgxr")
+[node name="Sprite2D2" type="Sprite2D" parent="env"]
+position = Vector2(152.25002, 179.74998)
+scale = Vector2(305.5, 360.49997)
+texture = SubResource("PlaceholderTexture2D_pbv3j")
+
+[node name="Sprite2D3" type="Sprite2D" parent="env"]
+position = Vector2(479, 180.00002)
+scale = Vector2(198.74998, 230.25)
+texture = SubResource("PlaceholderTexture2D_pbv3j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 432.0
+offset_top = 146.0
+offset_right = 513.0
+offset_bottom = 203.0
+texture = SubResource("PlaceholderTexture2D_3cuvs")
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
